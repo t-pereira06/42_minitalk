@@ -1,0 +1,1 @@
+# grade for minitalk project
