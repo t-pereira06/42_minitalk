@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_stronlydigits.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 14:44:21 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/03 14:19:57 by tsodre-p         ###   ########.fr       */
+/*   Created: 2023/01/03 14:09:07 by tsodre-p          #+#    #+#             */
+/*   Updated: 2023/01/03 15:56:25 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int a)
+int	ft_stronlydigits(char *str)
 {
-	if ((a >= '0' && a <= '9'))
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		return (1);
+		if (ft_isdigit(str[i]) == 1)
+			i++;
+		else
+			return (0);
 	}
-	return (0);
+	return (1);
 }

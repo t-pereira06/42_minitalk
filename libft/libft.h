@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:47:45 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/10 13:48:04 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/03 14:23:27 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		ft_isalpha(int a);
 int		ft_isascii(int a);
 int		ft_isdigit(int a);
 int		ft_isprint(int a);
+int		ft_stronlydigits(char *str);
 int		ft_memcmp(const void *str1, const void *str2, size_t n);
 int		ft_tolower(int a);
 int		ft_toupper(int a);
