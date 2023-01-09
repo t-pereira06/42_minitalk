@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 11:30:13 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/06 11:49:11 by tsodre-p         ###   ########.fr       */
+/*   Created: 2023/01/06 11:45:16 by tsodre-p          #+#    #+#             */
+/*   Updated: 2023/01/06 12:03:49 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libraries/minitalk.h"
+#include "../libraries/minitalk_bonus.h"
 
 void	print_char(int signal)
 {

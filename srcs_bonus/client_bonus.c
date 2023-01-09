@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/06 11:49:30 by tsodre-p         ###   ########.fr       */
+/*   Created: 2023/01/06 11:45:12 by tsodre-p          #+#    #+#             */
+/*   Updated: 2023/01/06 14:56:31 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libraries/minitalk.h"
+#include "../libraries/minitalk_bonus.h"
 
 void	send_msg(int server_pid, char msg)
 {
@@ -48,13 +48,15 @@ int	main(int argc, char **argv)
 {
 	int	i;
 	int	pid;
+	char	clientpid;
 	char	*msg;
 
 	i = 0;
+	clientpid = ft_atoi(getpid());
 	if (check_input(argc, argv))
 	{
 		pid = ft_atoi(argv[1]);
-		msg = ft_strdup(argv[2]);
+		msg = ft_strdup(argv[2] + '\0' + clientpid);
 		while (msg[i])
 		{
 			send_msg(pid, msg[i]);
@@ -64,4 +66,6 @@ int	main(int argc, char **argv)
 		send_msg(pid, '\n');
 	}
 	return (0);
+	//fazer um getpid e mandar para la o pid do cliente para poder mandar mensagem
+	//mandar a mensagem para o servidor junto com o pid do cliente, usando \0 como separador
 }
