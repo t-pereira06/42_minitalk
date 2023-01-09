@@ -6,14 +6,14 @@
 #    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 14:26:29 by tsodre-p          #+#    #+#              #
-#    Updated: 2023/01/06 12:03:27 by tsodre-p         ###   ########.fr        #
+#    Updated: 2023/01/09 09:58:12 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFT = libft/libft.a
 
 CC = cc
-RM = rm -f	int	ppid;
+RM = rm -rf
 
 CLIENT = client
 SERVER = server

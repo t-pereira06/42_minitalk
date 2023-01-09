@@ -6,11 +6,11 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:45:16 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/06 12:03:49 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:05:31 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libraries/minitalk_bonus.h"
+#include "../libraries/minitalk.h"
 
 void	print_char(int signal)
 {
