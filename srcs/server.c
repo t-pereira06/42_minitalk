@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:30:13 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/06 11:49:11 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:38:01 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ int	main(int argc, char **argv)
 	{
 		ft_printf("%s\n", "Verify the input! Execute ./server");
 	}
-	ft_printf("%s", "Server PID: ");
-	ft_printf("%d\n", pid);
-	signal(SIGUSR1, print_char);
-	signal(SIGUSR2, print_char);
-	while (1)
-		pause();
+	else
+	{
+		ft_printf("%s", "Server PID: ");
+		ft_printf("%d\n", pid);
+		signal(SIGUSR1, print_char);
+		signal(SIGUSR2, print_char);
+		while (1)
+			pause();
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/06 11:49:30 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:02:40 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,15 @@ int	main(int argc, char **argv)
 	if (check_input(argc, argv))
 	{
 		pid = ft_atoi(argv[1]);
-		msg = ft_strdup(argv[2]);
+		//msg = ft_strdup(argv[2]);
+		msg = ft_strjoin(argv[2], "\n");
 		while (msg[i])
 		{
 			send_msg(pid, msg[i]);
 			i++;
 		}
 		free(msg);
-		send_msg(pid, '\n');
+		//send_msg(pid, '\n');
 	}
 	return (0);
 }
