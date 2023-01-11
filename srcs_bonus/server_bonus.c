@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:45:16 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/09 16:20:51 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/11 10:53:03 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,15 @@ int	main(int argc, char **argv)
 	if (argc != 1)
 	{
 		ft_printf("%s\n", "Verify the input! Execute ./server");
+		return(0);
 	}
-	else
-	{
-		ft_printf("%s", "Server PID: ");
-		ft_printf("%d\n", pid);
-		if (sigaction(SIGUSR1, &sa_newsignal, NULL) == -1)
-			ft_printf("%s\n", "Error! SIGUSR1 failed to send!");
-		if (sigaction(SIGUSR2, &sa_newsignal, NULL) == -1)
-			ft_printf("%s\n", "Error! SIGUSR2 failed to send!");
-		while (1)
+	ft_printf("%s", "Server PID: ");
+	ft_printf("%d\n", pid);
+	if (sigaction(SIGUSR1, &sa_newsignal, NULL) == -1)
+		ft_printf("%s\n", "Error! SIGUSR1 failed to send!");
+	if (sigaction(SIGUSR2, &sa_newsignal, NULL) == -1)
+		ft_printf("%s\n", "Error! SIGUSR2 failed to send!");
+	while (1)
 			pause();
-	}
 	return (0);
 }

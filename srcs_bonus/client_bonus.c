@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:45:12 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/09 18:02:49 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:17:48 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,35 @@ void	send_msg(int server_pid, char *msg)
 	while (*msg)
 	{
 		character = *msg;
-		bit = 7;
-		if (character == '\0')
-
-		while (bit >= 0)
+		bit = 8;
+		while (bit--)
 		{
-			if (character >> bit & 1)
+			if (character & 0b10000000)
 				kill(server_pid, SIGUSR1);
 			else
 				kill(server_pid, SIGUSR2);
 			usleep(50);
-			bit--;
+			character <<= 1;
 		}
 		msg++;
+	}
+}
+
+void	send_null(int server_pid)
+{
+	int		bit;
+	char	null;
+
+	bit = 7;
+	null = '\0';
+	while (bit >= 0)
+	{
+		if (null >> bit & 1)
+			kill(server_pid, SIGUSR1);
+		else
+			kill(server_pid, SIGUSR2);
+		usleep(400);
+		bit--;
 	}
 }
 
@@ -41,7 +57,9 @@ void	checkmessage(int signal, siginfo_t *info, void *ucontext)
 	(void)info;
 	(void)ucontext;
 	if (signal == SIGUSR1)
-		ft_printf("%s", "Message received by server!\n");
+	{
+		ft_printf("%s\n", "Message received by and printed by the server!");
+	}
 	exit (1);
 }
 
@@ -77,6 +95,7 @@ int	main(int argc, char **argv)
 			ft_printf("%s\n", "Error! SIGUSR1 failed!");
 		send_msg(pid, msg);
 		free(msg);
+		send_null(pid);
 	}
 	while (1)
 		pause();

@@ -32,7 +32,7 @@ OBJ_CLIENT_BONUS = $(SRC_CLIENT_BONUS:%.c=%.o)
 SRC_SERVER_BONUS = srcs_bonus/server_bonus.c
 OBJ_SERVER_BONUS = $(SRC_SERVER_BONUS:%.c=%.o)
 
-all: $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS)
+all: $(SERVER) $(CLIENT)
 
 $(LIBFT):
 	@$(MAKE) -C ./libft
@@ -49,6 +49,7 @@ $(SERVER_BONUS): $(OBJ_SERVER_BONUS) $(LIBFT)
 $(CLIENT_BONUS): $(OBJ_CLIENT_BONUS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ_CLIENT_BONUS) $(LIBFT) -o client_bonus
 
+bonus: $(SERVER_BONUS) $(CLIENT_BONUS)
 clean:
 		@$(MAKE) fclean -C ./libft
 		@$(RM) $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_SERVER_BONUS) $(OBJ_CLIENT_BONUS)

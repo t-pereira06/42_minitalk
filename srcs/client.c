@@ -6,25 +6,33 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/09 15:02:40 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:09:11 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libraries/minitalk.h"
 
-void	send_msg(int server_pid, char msg)
+void	send_msg(int server_pid, char *msg)
 {
-	int	i;
+	unsigned char	character;
+	int				bit;
+	int				i;
 
-	i = 7;
-	while (i >= 0)
+	i = 0;
+	while (msg[i] != '\0')
 	{
-		if (msg >> i & 1)
-			kill(server_pid, SIGUSR1);
-		else
-			kill(server_pid, SIGUSR2);
-		usleep(100);
-		i--;
+		character = msg[i];
+		bit = 8;
+		while (bit--)
+		{
+			if (character & 0b10000000)
+				kill(server_pid, SIGUSR1);
+			else
+				kill(server_pid, SIGUSR2);
+			usleep(50);
+			character <<= 1;
+		}
+		i++;
 	}
 }
 
@@ -54,15 +62,9 @@ int	main(int argc, char **argv)
 	if (check_input(argc, argv))
 	{
 		pid = ft_atoi(argv[1]);
-		//msg = ft_strdup(argv[2]);
 		msg = ft_strjoin(argv[2], "\n");
-		while (msg[i])
-		{
-			send_msg(pid, msg[i]);
-			i++;
-		}
+		send_msg(pid, msg);
 		free(msg);
-		//send_msg(pid, '\n');
 	}
 	return (0);
 }
