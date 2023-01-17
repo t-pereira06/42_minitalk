@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:45:16 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/11 10:53:03 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/17 09:10:03 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	print_char(int signal, siginfo_t *info, void *ucontent)
 
 int	main(int argc, char **argv)
 {
-	int	pid;
 	struct sigaction	sa_newsignal;
+	int					pid;
 
 	(void)argv;
 	sa_newsignal.sa_sigaction = &print_char;
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	if (argc != 1)
 	{
 		ft_printf("%s\n", "Verify the input! Execute ./server");
-		return(0);
+		return (0);
 	}
 	ft_printf("%s", "Server PID: ");
 	ft_printf("%d\n", pid);
@@ -52,6 +52,6 @@ int	main(int argc, char **argv)
 	if (sigaction(SIGUSR2, &sa_newsignal, NULL) == -1)
 		ft_printf("%s\n", "Error! SIGUSR2 failed to send!");
 	while (1)
-			pause();
+		pause();
 	return (0);
 }

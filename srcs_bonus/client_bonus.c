@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:45:12 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/11 19:17:48 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:46:50 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@ void	send_msg(int server_pid, char *msg)
 {
 	unsigned char	character;
 	int				bit;
+	int				i;
 
-	while (*msg)
+	i = 0;
+	while (msg[i] != '\0')
 	{
-		character = *msg;
-		bit = 8;
-		while (bit--)
+		character = msg[i];
+		bit = 7;
+		while (bit >= 0)
 		{
-			if (character & 0b10000000)
+			if ((character >> bit & 1) == 1)
 				kill(server_pid, SIGUSR1);
 			else
 				kill(server_pid, SIGUSR2);
 			usleep(50);
-			character <<= 1;
+			bit--;
 		}
-		msg++;
+		i++;
 	}
 }
 
@@ -43,7 +45,7 @@ void	send_null(int server_pid)
 	null = '\0';
 	while (bit >= 0)
 	{
-		if (null >> bit & 1)
+		if ((null >> bit & 1) == 1)
 			kill(server_pid, SIGUSR1);
 		else
 			kill(server_pid, SIGUSR2);
@@ -81,9 +83,9 @@ int	check_input(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int	pid;
-	char	*msg;
 	struct sigaction	sa_newsignal;
+	char				*msg;
+	int					pid;
 
 	if (check_input(argc, argv))
 	{

@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:30:09 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/11 11:09:11 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:31:03 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	send_msg(int server_pid, char *msg)
 	while (msg[i] != '\0')
 	{
 		character = msg[i];
-		bit = 8;
-		while (bit--)
+		bit = 7;
+		while (bit >= 0)
 		{
-			if (character & 0b10000000)
+			if ((character >> bit & 1) == 1)
 				kill(server_pid, SIGUSR1);
 			else
 				kill(server_pid, SIGUSR2);
 			usleep(50);
-			character <<= 1;
+			bit--;
 		}
 		i++;
 	}
@@ -54,9 +54,9 @@ int	check_input(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	pid;
 	char	*msg;
+	int		i;
+	int		pid;
 
 	i = 0;
 	if (check_input(argc, argv))

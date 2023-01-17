@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:30:13 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/01/09 13:38:01 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:41:43 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	print_char(int signal)
 
 int	main(int argc, char **argv)
 {
-	(void)argv;
 	int	pid;
 
 	pid = getpid();
+	(void)argv;
 	if (argc != 1)
 	{
 		ft_printf("%s\n", "Verify the input! Execute ./server");
